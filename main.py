@@ -195,8 +195,8 @@ if selected == "Home":
     **NOTLAR** 
     * Expected annual loss - bar chart çizimi ekle, hangi hasar seviyesinin en çok katkı yaptığını göster
     * upload hazard değerleri interpolasyon yapılacak şekilde ayarlanmalı, sadece default hız için düzgün çalışacak şu an
-    """)
-    
+    * Özlem
+    """)  
 
 # =============================================================================
 # EXPECTED COST OF BUILDINGS
