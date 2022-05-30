@@ -5,4 +5,3 @@ plotly==5.7.0
 scipy==1.8.1
 streamlit==1.8.1
 streamlit_option_menu==0.3.2
-~umpy==1.18.5
