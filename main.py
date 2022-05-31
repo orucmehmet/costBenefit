@@ -28,7 +28,7 @@ def streamlit_menu(example=1):
         with st.sidebar:
             selected = option_menu(
                 menu_title="Main Menu",  # required
-                options=["Home", "Projects", "Contact"],  # required
+                options=["Anasayfa", "Analiz", "İletişim"],  # required
                 icons=["house", "building", "envelope"],  # optional
                 menu_icon="cast",  # optional
                 default_index=0,  # optional
@@ -39,7 +39,7 @@ def streamlit_menu(example=1):
         # 2. horizontal menu w/o custom style
         selected = option_menu(
             menu_title=None,  # required
-            options=["Home", "Projects", "Contact"],  # required
+            options=["Anasayfa", "Analiz", "İletişim"],  # required
             icons=["house", "building", "envelope"],  # optional
             menu_icon="cast",  # optional
             default_index=0,  # optional
@@ -51,7 +51,7 @@ def streamlit_menu(example=1):
         # 2. horizontal menu with custom style
         selected = option_menu(
             menu_title=None,  # required
-            options=["Home", "Projects", "Contact"],  # required
+            options=["Anasayfa", "Analiz", "İletişim"],  # required
             icons=["house", "building", "envelope"],  # optional
             menu_icon="cast",  # optional
             default_index=0,  # optional
@@ -183,28 +183,30 @@ def obtainTableofExpectedCost():
 # HOME PAGE
 # =============================================================================
 
-if selected == "Home":
+if selected == "Anasayfa":
     # About
-    expander_bar = st.expander("About")
+    expander_bar = st.expander("Hakkında")
     expander_bar.markdown("""
-    * **Python kütüphaneleri:** pandas, streamlit, numpy, matplotlib, plotly, os, scipy
-    * **Data source:** [CoinMarketCap](http://coinmarketcap.com).
-    * **Credit:** Web scraper adapted from the Medium article *[Web Scraping Crypto Prices With Python](https://towardsdatascience.com/web-scraping-crypto-prices-with-python-41072ea5b5bf)* written by [Bryan Feng](https://medium.com/@bryanf).
+    * **Python kütüphaneleri:** pandas, streamlit, numpy, matplotlib, plotly, scipy
+    * **Ek:** 
+        * Örnek uygulaması yapılan binanın mevcut ve güçlendirilmiş durumuna ait kırılganlık eğrileri YÖK Tez Merkezi arşivinde "**642148**" tez numarası referans alınmıştır.
+        * Çözümler sadece **İstanbul** bölgesine ait tehlike eğrileri kullanılarak elde edilmiştir. Aplikasyonun sonraki versiyonlarında diğer bölgeler için de tehlike eğrileri tanımlanabilir.
+        * Hasar seviyelerine göre yapının hasar almamış durumuna getirmek için harcanan maliyet [Menna vd.](https://doi.org/10.1007/s11367-012-0477-9) çalışmasındaki değerler kullanılarak hesaplanmıştır.
+        * [inşaathesabı.com](https://insaathesabi.com/ornekrapor/) internet sitesindeki örnek rapor incelenerek yapısal ve yapısal olmayan başlangıç maliyetler hesaplanmıştır.
     """)
-    st.write("""
-    **NOTLAR** 
-    * Expected annual loss - bar chart çizimi ekle, hangi hasar seviyesinin en çok katkı yaptığını göster
-    * upload hazard değerleri interpolasyon yapılacak şekilde ayarlanmalı, sadece default hız için düzgün çalışacak şu an
-    """)  
-    st.write("""
-    --------------------------------------------------------------------------------------------------------------------------
-    ÖZLEM ÖZDERYA seni seviyorum
-    """)  
+    
+    st.markdown("<h1 style='text-align: center; color: darkblue;'>YAP 556 - Yapı.Lifli Poli.Kompo.ile Güçlendirme</h1>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; color: darkred;'>CostBenefitApp V1.0</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: black;'><i>Bu uygulama <b>YAP556</b> dersi <b>Dönem Projesi</b> için hazırlanmıştır - 01.06.2022</i></p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; color: black;'><i>Hazırlayan: <b>Mehmet Oruç - İTÜ Afet Yönetimi Enstitüsü</b></i></p>", unsafe_allow_html=True)
+
+    
+    
 
 # =============================================================================
 # EXPECTED COST OF BUILDINGS
 # =============================================================================
-if selected == "Projects":
+if selected == "Analiz":
     sdasdas = []
 
     #---------------------------------#
@@ -253,13 +255,13 @@ if selected == "Projects":
             submit_button = st.form_submit_button('Submit')
             expander_bar = st.expander("Açıklama")
             expander_bar.markdown("""
-        * **bilgi ver:** """)
+        * 3 veya 4 hasar seviyesi için kullanılabilir.""")
         
         with st.sidebar.form(key='beta değerleri'):
             beta = st.text_input('Standart Deviation',placeholder='Örnek: 0.25, 0.3, 0.3')
             submit_button = st.form_submit_button('Submit')
             expander_bar = st.expander("Açıklama")
-            expander_bar.markdown("""* **bilgi ver:** """)
+            expander_bar.markdown("""* 3 veya 4 hasar seviyesi için kullanılabilir.""")
         
               
         # **** CAPACITY ****
@@ -288,7 +290,7 @@ if selected == "Projects":
         N = component[np.where(component=='Nonstructural')]
         A = component[np.where(component=='Major Appliances')]
 
-        metrekareOran=894.6/3705
+        metrekareOran=1193/3705
         defaultStructuralCostInitial = round(8971716*metrekareOran/14.57)   # dolar kuru 14.57 , maliyet 8971716
         defaultNonstructuralCostInitial = round(11768794*metrekareOran/14.57)
         defaultHumanLifeCostInitial = 0
@@ -319,7 +321,7 @@ if selected == "Projects":
             totalInitialCostOfAllComponent = structural_initial_cost+nonstructural_initial_cost+majorAppliance_initial_cost
             submit_button = st.form_submit_button('Submit')
             expander_bar = st.expander("Açıklama")
-            expander_bar.markdown("""* **bilgi ver:** """)
+            expander_bar.markdown("""* Maliyet bileşeni için değeri girin ve **Submit**'e tıklayın""")
         
         
         # ****IMPACT ****
@@ -444,21 +446,37 @@ if selected == "Projects":
         np.set_string_function(lambda x: repr(buildingUseLife), repr=False)
         table = damageCostTyear.iloc[buildingUseLife-1,0:2]
         
-        # GÜÇÇLENDİRME MALİYETİ TANIMLAMA
-        st.sidebar.header('Güçlendirme Maliyeti')
-        
-        with st.sidebar.form(key='güçlendirme maliyet değerleri'):
-            retrofitMD = st.number_input('Mevcut Durum Güçlendirme',value=0,step =1)
-            submit_button = st.form_submit_button('Submit')
-            expander_bar = st.expander("Açıklama")
-            expander_bar.markdown("""
-        * **bilgi ver:** """)
-        
-        
+
+
        # Write Streamlit Page 
         plotFragilityCurveofEachState()   # kırılganlık eğrilerinin çizilmesi
 
         
+        st.subheader("Tehlike Haritası")
+        hazardPlot= go.Figure()
+        # Create and style traces
+        hazardPlot.add_trace(go.Scatter(x=edp, y=hazard, name='SH',
+                                 line=dict(color='green', width=2)))
+        hazardPlot.update_layout(legend = dict(
+        font = dict(size = 15, color = "black")),
+        margin=dict(l=15, r=15, t=22, b=20),
+        xaxis=dict(
+        title='PGV (cm/s)',
+        titlefont_size=16,
+        tickfont_size=14),
+        yaxis=dict(
+        title='Yıllık Aşılma Olasılığı',
+        titlefont_size=16,
+        tickfont_size=14),height=350,width=600,uniformtext_minsize=12, uniformtext_mode='hide')
+        
+        hazardPlot.update_xaxes(type="log")
+        hazardPlot.update_yaxes(type="log")
+        
+        st.markdown('İstanbul için **_Yıllık Tehlike Haritası_**')
+        st.write(hazardPlot)
+                   
+                  
+    
 
         if len(buildingUseLife)>0:
             makeTableAndChartofExpectedCost()
@@ -474,7 +492,7 @@ if selected == "Projects":
                     st.session_state.MD = comparisonOfRefrofitMethods
                 
                 # st.write(st.session_state.MD.damageCostTyear.iloc[49,1])
-                comparisonOfRefrofitMethods.loc[[indexRetrofit[0]]] = [totalInitialCostOfAllComponent,retrofitMD,damageCostTyear.iloc[49,1],totalInitialCostOfAllComponent+retrofitMD+damageCostTyear.iloc[49,1]]
+                comparisonOfRefrofitMethods.loc[[indexRetrofit[0]]] = [totalInitialCostOfAllComponent,0,damageCostTyear.iloc[49,1],totalInitialCostOfAllComponent+0+damageCostTyear.iloc[49,1]]
                 st.session_state.MD = st.session_state.MD.append(comparisonOfRefrofitMethods)
         # submite tıklandığında duplicate olmasın diye aşağıdaki yapıldı            
                 st.session_state.MD=st.session_state.MD[~st.session_state.MD.index.duplicated(keep='last')]
@@ -493,13 +511,13 @@ if selected == "Projects":
             submit_button = st.form_submit_button('Submit')
             expander_bar = st.expander("Açıklama")
             expander_bar.markdown("""
-        * **bilgi ver:** """)
+        * 3 veya 4 hasar seviyesi için kullanılabilir.""")
         
         with st.sidebar.form(key='beta değerleri'):
             beta = st.text_input('Standart Deviation',placeholder='Örnek: 0.25,0.33,0.33')
             submit_button = st.form_submit_button('Submit')
             expander_bar = st.expander("Açıklama")
-            expander_bar.markdown("""* **bilgi ver:** """)
+            expander_bar.markdown("""* 3 veya 4 hasar seviyesi için kullanılabilir.""")
         
               
         # **** CAPACITY ****
@@ -527,7 +545,7 @@ if selected == "Projects":
         N = component[np.where(component=='Nonstructural')]
         A = component[np.where(component=='Major Appliances')]
 
-        metrekareOran=894.6/3705
+        metrekareOran=1193/3705
         defaultStructuralCostInitial = round(8971716*metrekareOran/14.57)   # dolar kuru 14.57 , maliyet 8971716
         defaultNonstructuralCostInitial = round(11768794*metrekareOran/14.57)
         defaultHumanLifeCostInitial = 0
@@ -558,7 +576,7 @@ if selected == "Projects":
             totalInitialCostOfAllComponent = structural_initial_cost+nonstructural_initial_cost+majorAppliance_initial_cost
             submit_button = st.form_submit_button('Submit')
             expander_bar = st.expander("Açıklama")
-            expander_bar.markdown("""* **bilgi ver:** """)
+            expander_bar.markdown("""* Maliyet bileşeni için değeri girin ve **Submit**'e tıklayın""")
         
         
         # ****IMPACT ****
@@ -684,13 +702,14 @@ if selected == "Projects":
         
         # GÜÇLENDİRME MALİYETİ TANIMLAMA
         st.sidebar.header('Güçlendirme Maliyeti')
-        
+        kolonSurfaceArea = 24*(4+3+2+2)*1.6*0.9   # katlarda 4,3,2,2 kat yapıldı, her kolon için 1.5 m 
+        defaultValueFrpRetrofit = round(kolonSurfaceArea*281.1/0.84)   # dolar/euro paritesi 0.84 ağustos 2021
         with st.sidebar.form(key='güçlendirme maliyet değerleri_KLP'):
-            retrofitBM = st.number_input('KLP Kompozit ile Güçlendirme',value=200000,step =1)
+            retrofitBM = st.number_input('KLP Kompozit ile Güçlendirme',value=defaultValueFrpRetrofit,step =1)
             submit_button = st.form_submit_button('Submit')
             expander_bar = st.expander("Açıklama")
             expander_bar.markdown("""
-        * **bilgi ver:** """)
+        * Güçlendirme için gereken maliyeti girin ve **Submit**'e tıklayınız!""")
         
         
        # SAYFA GİRDİLERİ - GRAFİKLER 
@@ -801,7 +820,7 @@ if selected == "Projects":
         st.subheader("Rapor")
 
         min_index = dataframe[dataframe.columns[3]].idxmin()
-        st.markdown("""Yapılan analizler sonucu yapının mevcut ve güçlendirilmiş durumdaki beklenen layıpları hesaplanmıştır. 
+        st.markdown("""Yapılan analizler sonucu yapının mevcut ve güçlendirilmiş durumdaki beklenen kayıpları hesaplanmıştır. 
         Yapıların belirli 50 yıllık kullanım ömrü olduğu varsayıldığı durum için **_"""+min_index+"""_** daha ekonomik bulunmuştur.""")
 
 
@@ -830,7 +849,7 @@ if selected == "Projects":
         
     
     
-if selected == "Contact":
+if selected == "İletişim":
     st.title("")
     
     st.header(":mailbox: İletişime Geçin!")
